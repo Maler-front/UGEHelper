@@ -1,4 +1,3 @@
-from mimetypes import init
 import FirstTaskClass
 import random
 from decimal import Decimal

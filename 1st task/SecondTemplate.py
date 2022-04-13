@@ -1,6 +1,6 @@
 import FirstTaskClass
-import random
 from decimal import Decimal
+import random
 
 
 class SecondTemplate(FirstTaskClass):
