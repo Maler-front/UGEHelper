@@ -12,14 +12,19 @@ from TenthTask.TenthTaskFactory import TenthTaskFactory as F10
 from EleventhTask.EleventhTaskFactory import EleventhTaskFactory as F11
 from TwelvthTask.TwelvthTaskFactory import TwelvthTaskFactory as F12
 from ThirteenthTask.ThirteenthTaskFactory import ThirteenthTaskFactory as F13
+from FourteenthTask.FourteenthTaskFactory import FourteenthTaskFactory as F14
 from FifteenthTask.FifteenthTaskFactory import FifteenthTaskFactory as F15
 from SixteenthTask.SixteenthTaskFactory import SixteenthTaskFactory as F16
 from SeventeenthTask.SeventeenthTaskFactory import SeventeenthTaskFactory as F17
+from EighteenthTask.EighteenthTaskFactory import EighteenthTaskFactory as F18
+from NinteenthTask.NinteenthTaskFactory import NinteenthTaskFactory as F19
+from TwentiethTask.TwentiesTaskFactory import TwentiethTaskFactory as F20
+from TwentyfirstTask.TwentyfirstTaskFactory import TwentyfirstTaskFactory as F21
 
 choice = 0
 while True:
     choice = input("Напишите номер задания для его генерирования или 0 для выхода\n")
-    factory = task = 0
+    task = 0
     match choice:
         case "1":
             factory = F1()
@@ -47,21 +52,22 @@ while True:
             factory = F12()
         case "13":
             factory = F13()
-        ##case 14:
-        ##    factory = F14()
-        ##    break
+        case "14":
+            factory = F14()
         case "15":
             factory = F15()
         case "16":
             factory = F16()
         case "17":
             factory = F17()
-        ##case "18":
-        ##    factory = F18()
-        ##case "19":
-        ##    factory = F19()
-        ##case "20":
-        ##    factory = F20()
+        case "18":
+            factory = F18()
+        case "19":
+            factory = F19()
+        case "20":
+            factory = F20()
+        case "21":
+            factory = F21()
         case "0":
             quit()
     if factory:
