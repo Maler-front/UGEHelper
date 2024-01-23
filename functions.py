@@ -50,3 +50,5 @@ def downDegree(deg):
     for char in temp:
         degrees += indexes[char] or ""
     return degrees
+
+
