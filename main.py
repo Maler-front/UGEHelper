@@ -18,7 +18,8 @@ def start(message):
 
 @bot.message_handler(commands=['help'])
 def help(message):
-    text = 'Help information'
+    text = 'На данный момент вспомогательной информации нет)\n' \
+           'Отправьте /start для начала работы с генерацией заданий'
     bot.send_message(message.chat.id, text)
 
 
@@ -30,6 +31,8 @@ def zero_level(message):
 
 
 def first_level(message):
+    if check_commands(message):
+        return
     match message.text.lower():
         case "сгенерировать определенное задание":
             task(message)
@@ -39,14 +42,27 @@ def first_level(message):
 
 
 def task(message):
+    if check_commands(message):
+        return
     text = 'Напишите номер задания (от 1 до 21)'
     bot.send_message(message.chat.id, text)
     bot.register_next_step_handler(message, task_choose)
 
 
 def task_choose(message):
-    task_id = int(''.join(i for i in message.text if i.isdigit()))
-    if 1 > task_id > 21:
+    if check_commands(message):
+        return
+    task_id = ''.join(i for i in message.text if i.isdigit())
+
+    if task_id == '':
+        text = 'Пожалуйста, напишите номер задания (от 1 до 21)'
+        bot.send_message(message.chat.id, text)
+        bot.register_next_step_handler(message, task_choose)
+        return
+
+    task_id = int(task_id)
+
+    if task_id > 21 or task_id < 1:
         text = 'Пожалуйста, напишите номер задания (от 1 до 21)'
         bot.send_message(message.chat.id, text)
         bot.register_next_step_handler(message, task_choose)
@@ -56,6 +72,8 @@ def task_choose(message):
 
 
 def display_task_variants(message):
+    if check_commands(message):
+        return
     task_id = get_task_id(message.chat.id)[0][0]
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     for i in range(1, GeneratingModule.get_prototipes_num(task_id) + 1):
@@ -67,6 +85,8 @@ def display_task_variants(message):
 
 
 def display_task(message):
+    if check_commands(message):
+        return
     task_id = get_task_id(message.chat.id)[0][0]
 
     if message.text.lower() == "сгенерировать случайный прототип":
@@ -101,6 +121,8 @@ def display_task(message):
 
 
 def answer_choose(message):
+    if check_commands(message):
+        return
     answer = message.text
     if answer.lower() == "показать ответ":
         show_answer(message)
@@ -122,6 +144,8 @@ def answer_choose(message):
 
 
 def show_answer(message, answer_is_correct=False):
+    if check_commands(message):
+        return
     reply = ''
     if not answer_is_correct:
         reply += f'Правильный ответ: {get_answer(message.chat.id)[0][0]}\n'
@@ -138,6 +162,8 @@ def show_answer(message, answer_is_correct=False):
 
 
 def choose_next_step(message):
+    if check_commands(message):
+        return
     match message.text.lower():
         case "вернуться на выбор задания":
             task(message)
@@ -208,6 +234,17 @@ def send_select_request(base, request):
     cursor.close()
     connection.close()
     return info
+
+def check_commands(message):
+    match message.text.lower():
+        case "/start":
+            zero_level(message)
+            return True
+        case "/help":
+            help(message)
+            return True
+        case _:
+            return False
 
 
 bot.polling(none_stop=True)

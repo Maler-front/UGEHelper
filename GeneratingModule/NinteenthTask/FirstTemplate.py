@@ -9,8 +9,8 @@ class FirstTemplate(BaseTaskClass):
     sum_square_not_multiplicity: int
 
     def __init__(self):
-        self.Answer = []
-        while len(self.Answer) == 0:
+        self.Answer = 0
+        while self.Answer == 0:
             self.sum_num = random.randint(10, 23)
             self.sum_square_multiplicity = random.randint(2, 7)
             self.sum_square_not_multiplicity = self.sum_square_multiplicity * random.randint(2, 4)
@@ -28,7 +28,11 @@ class FirstTemplate(BaseTaskClass):
                 elif sum_squares % self.sum_square_not_multiplicity == 0:
                     continue
 
-                self.Answer.append(i)
+                self.Answer = i
+                break
 
-    def displayTask(self):
-        print(f"Найдите трёхзначное число, сумма цифр которого равна {self.sum_num}, а сумма квадратов цифр делится на {self.sum_square_multiplicity}, но не делится на {self.sum_square_not_multiplicity}. В ответе укажите какое либо одно такое число.")
+    def get_text(self):
+        return f"Найдите минимальное трёхзначное число, сумма цифр которого равна {self.sum_num}, а сумма квадратов цифр делится на {self.sum_square_multiplicity}, но не делится на {self.sum_square_not_multiplicity}. В ответе укажите какое либо одно такое число."
+
+    def get_image(self):
+        pass

@@ -2,7 +2,7 @@ from abc import abstractmethod
 
 
 class BaseTaskClass:
-    answer: int
+    answer: float
 
     @property
     def Answer(self):
@@ -12,6 +12,7 @@ class BaseTaskClass:
     def Answer(self, newAnswer):
         self.answer = newAnswer
 
+    @abstractmethod
     def __init__(self):
         pass
 

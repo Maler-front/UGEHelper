@@ -24,9 +24,9 @@ from GeneratingModule.TwentyfirstTask.TwentyfirstTaskFactory import TwentyfirstT
 class GeneratingModule:
 
     @staticmethod
-    def get_task(task_id, prototipe_id):
+    def get_task(task_id, prototype_id):
         factory = GeneratingModule.get_factory(task_id)
-        return factory.new_task(prototipe_id)
+        return factory.new_task(prototype_id)
 
     @staticmethod
     def get_random_task(task_id):
@@ -35,55 +35,51 @@ class GeneratingModule:
 
     @staticmethod
     def get_factory(task_id):
-        factory = None
         task_id = int(task_id)
-        match task_id:
-            case 1:
-                factory = F1()
-            case 2:
-                factory = F2()
-            case 3:
-                factory = F3()
-            case 4:
-                factory = F4()
-            case 5:
-                factory = F5()
-            case 6:
-                factory = F6()
-            case 7:
-                factory = F7()
-            case 8:
-                factory = F8()
-            case 9:
-                factory = F9()
-            case 10:
-                factory = F10()
-            case 11:
-                factory = F11()
-            case 12:
-                factory = F12()
-            case 13:
-                factory = F13()
-            case 14:
-                factory = F14()
-            case 15:
-                factory = F15()
-            case 16:
-                factory = F16()
-            case 17:
-                factory = F17()
-            case 18:
-                factory = F18()
-            case 19:
-                factory = F19()
-            case 20:
-                factory = F20()
-            case 21:
-                factory = F21()
-        if factory:
-            return factory
-        else:
-            return None
+        if task_id == 1:
+            return F1()
+        if task_id == 2:
+            return F2()
+        if task_id == 3:
+            return F3()
+        if task_id == 4:
+            return F4()
+        if task_id == 5:
+            return F5()
+        if task_id == 6:
+            return F6()
+        if task_id == 7:
+            return F7()
+        if task_id == 8:
+            return F8()
+        if task_id == 9:
+            return F9()
+        if task_id == 10:
+            return F10()
+        if task_id == 11:
+            return F11()
+        if task_id == 12:
+            return F12()
+        if task_id == 13:
+            return F13()
+        if task_id == 14:
+            return F14()
+        if task_id == 15:
+            return F15()
+        if task_id == 16:
+            return F16()
+        if task_id == 17:
+            return F17()
+        if task_id == 18:
+            return F18()
+        if task_id == 19:
+            return F19()
+        if task_id == 20:
+            return F20()
+        if task_id == 21:
+            return F21()
+
+        return None
 
     @staticmethod
     def get_task_info(task_id):
@@ -97,3 +93,5 @@ class GeneratingModule:
     def get_prototipes_num(task_id):
         factory = GeneratingModule.get_factory(task_id)
         return factory.templates_num
+
+
